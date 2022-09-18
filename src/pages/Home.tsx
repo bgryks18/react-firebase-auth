@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { logout } from "../firebase";
 import { removeUser } from "../store/auth";
+import { Link } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ const Home = () => {
       <div className="home">
         <div>
           <div className="tab">
+            <div className="tabItem">
+              <Link to="/profile">Profile</Link>
+            </div>
             <div className="tabItem">
               <a href="#" onClick={handleLogout}>
                 Logout

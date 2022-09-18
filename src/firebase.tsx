@@ -5,6 +5,10 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
+  updateEmail,
+  updatePassword,
+  updatePhoneNumber,
 } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -59,6 +63,66 @@ export const logout = async () => {
     const userCredential = await signOut(auth);
 
     return { message: "Logged out.", type: "success" };
+  } catch (error: any) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    return { message: errorMessage, type: "error" };
+  }
+};
+
+export const saveInformations = async (data: any) => {
+  try {
+    await updateProfile(auth.currentUser as any, data);
+    return {
+      message: "Saved successfuly.",
+      type: "success",
+      user: auth.currentUser,
+    };
+  } catch (error: any) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    return { message: errorMessage, type: "error" };
+  }
+};
+
+export const saveEmail = async (email: string) => {
+  try {
+    await updateEmail(auth.currentUser as any, email);
+    return {
+      message: "Saved successfuly.",
+      type: "success",
+      user: auth.currentUser,
+    };
+  } catch (error: any) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    return { message: errorMessage, type: "error" };
+  }
+};
+
+export const savePhoneNumber = async (phoneNumber: string) => {
+  try {
+    await updatePhoneNumber(auth.currentUser as any, phoneNumber as any);
+    return {
+      message: "Saved successfuly.",
+      type: "success",
+      user: auth.currentUser,
+    };
+  } catch (error: any) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    return { message: errorMessage, type: "error" };
+  }
+};
+
+export const savePassword = async (password: string) => {
+  try {
+    await updatePassword(auth.currentUser as any, password);
+    return {
+      message: "Saved successfuly.",
+      type: "success",
+      user: auth.currentUser,
+    };
   } catch (error: any) {
     const errorCode = error.code;
     const errorMessage = error.message;
